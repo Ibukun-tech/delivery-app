@@ -1,0 +1,28 @@
+.featureContainer {
+  position: relative;
+  background-color: var(--main-color);
+  height: calc(100vh - 100px);
+  overflow: hidden;
+}
+.featureArrowContainer {
+  position: absolute;
+  height: 20%;
+  width: 20%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+.featureImage {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  animation: all 1s ease-in-out;
+  -webkit-animation: all 1s ease-in-out;
+}
+.featureImgContainer {
+  width: 100vw;
+  height: 100%;
+  position: relative;
+}

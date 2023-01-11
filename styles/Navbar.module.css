@@ -1,0 +1,79 @@
+.navBarContainer {
+  height: 100px;
+  /* width: 100%; */
+  padding: 0px 50px;
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+}
+.navBarItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.navbaritem:nth-child(2) {
+  flex: 3;
+}
+.navBarItem:last-child {
+  justify-content: flex-end;
+}
+.navBarCallButton {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 50%;
+  -webkit-border-radius: ;
+  -moz-border-radius: ;
+  -ms-border-radius: ;
+  -o-border-radius: ;
+}
+.navBarTexts {
+  margin-left: 20px;
+  color: white;
+}
+.navBarTexts:first-child {
+  font-size: 12px;
+  font-weight: 500;
+}
+.navBarTexts:last-child {
+  font-size: 20px;
+  font-weight: bold;
+}
+.navBarList {
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.navBarListItem {
+  margin: 30px;
+  font-weight: 500;
+}
+.navBarCart {
+  position: relative;
+}
+.navBarCartCounter {
+  position: absolute;
+  top: -0px;
+  right: -10px;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  font-weight: bold;
+  color: var(--main-color);
+}

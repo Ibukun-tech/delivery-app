@@ -1,0 +1,32 @@
+.footerContainer {
+  height: calc(100vh - 100px);
+  background-color: black;
+  display: flex;
+}
+.footerItem {
+  flex: 1;
+  position: relative;
+}
+.footerItem:nth-child(2) {
+  display: flex;
+  flex: 2;
+  padding: 50px;
+  justify-content: space-between;
+}
+.footerCard {
+  flex: 1;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footerTitle {
+  color: #b7903c;
+  font-size: 18px;
+}
+.footerText {
+  color: lightgray;
+}
+.footerMotto {
+  color: lightgray;
+}
