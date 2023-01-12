@@ -1,4 +1,5 @@
 import Head from "next/head";
+import axios from "axios";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import ProductList from "./../component/ProductList";
@@ -6,6 +7,10 @@ import styles from "../styles/Home.module.css";
 import Feature from "./../component/Feature";
 const inter = Inter({ subsets: ["latin"] });
 
+export async function getData() {
+  const res = await axios.get("https://localhost:3000/product");
+  if (!res) return res;
+}
 export default function Home() {
   return (
     <>

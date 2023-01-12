@@ -8,6 +8,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "roboto", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono",
+    "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono",
+    "Droid Sans Mono", "Courier New";
 }
 html {
   font-family: "roboto", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono",
