@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  position: -webkit-sticky;
 }
 .navBarItem {
   flex: 1;
@@ -27,10 +28,10 @@
   justify-content: center;
   background-color: white;
   border-radius: 50%;
-  -webkit-border-radius: ;
-  -moz-border-radius: ;
-  -ms-border-radius: ;
-  -o-border-radius: ;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 .navBarTexts {
   margin-left: 20px;

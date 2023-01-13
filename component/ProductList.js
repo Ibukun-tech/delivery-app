@@ -1,6 +1,7 @@
 import styles from "./../styles/productList.module.css";
 import ProductCard from "./ProductCard";
-const ProductList = () => {
+const ProductList = (props) => {
+  console.log(props);
   return (
     <div className={styles.productContainer}>
       <h1 className={styles.productHeading}>Heading for product page</h1>
@@ -14,11 +15,9 @@ const ProductList = () => {
         mollit anim id est laborum."
       </p>
       <div className={styles.productWrapper}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {props.product.products.map((prd, i) => (
+          <ProductCard prd={prd} key={i} />
+        ))}
       </div>
     </div>
   );

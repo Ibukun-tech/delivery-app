@@ -20,11 +20,10 @@ const Feature = () => {
     <div className={styles.featureContainer}>
       <div className={styles.featureArrowContainer}>
         <Image
-          object-fit="contain"
+          layout="fill"
           src="/img/arrowl.png"
           onClick={decreaseSlider}
           style={{ left: 0 }}
-          fill
           alt=""
         />
       </div>
@@ -35,7 +34,7 @@ const Feature = () => {
             style={{ transform: `translateX(${-100 * slide}vw)` }}
             key={i}
           >
-            <Image src={img} fill object-fit="contain" alt="" />;
+            <Image src={img} layout="fill" objectFit="contain" alt="" />;
           </div>;
         })}
       </div>
@@ -44,7 +43,12 @@ const Feature = () => {
         object-fit="contain"
         style={{ right: 0 }}
       >
-        <Image src="/img/arrowr.png" onClick={increaseSlider} fill alt="" />
+        <Image
+          src="/img/arrowr.png"
+          onClick={increaseSlider}
+          layout="fill"
+          alt=""
+        />
       </div>
     </div>
   );

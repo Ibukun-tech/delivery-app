@@ -1,10 +1,11 @@
-import { The_Girl_Next_Door } from "@next/font/google";
 import styles from "../../styles/product.module.css";
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
-const Product = () => {
+const Product = ({ product }) => {
   const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   return (
     <>
       <Head>
@@ -22,35 +23,56 @@ const Product = () => {
       <div className={styles.productContainer}>
         <div className={styles.productLeft}>
           <div className={styles.productImgContainer}>
-            <Image fill src="/img/pizza.png" object-fit="contain" />
+            <Image layout="fill" src={product.img} objectFit="contain" />
           </div>
         </div>
         <div className={styles.productRight}>
-          <h1 className={styles.productTitle}>PIZZATITLE</h1>
-          <span className={styles.productPrice}>price</span>
-          <p className={styles.productDesc}>Loukuqwd wd sqiwdqwdgugduwgdg v</p>
-          <h3 className={styles.productChoose}>Choose </h3>
+          <h1 className={styles.productTitle}>{product.title}</h1>
+          <span className={styles.productPrice}>${product.price[price]}</span>
+          <p className={styles.productDesc}>{product.description}</p>
+          <h3 className={styles.productChoose}>
+            Choose additional ingredients
+          </h3>
           <div className={styles.productSizes}>
-            <div className={styles.productSize}>
-              <Image src="/img/size.png" alt="" fill />
+            <div
+              className={styles.productSize}
+              onClick={() => {
+                setPrice(0);
+              }}
+            >
+              <Image src="/img/size.png" alt="" layout="fill" />
               <span className={styles.productNumber}>small</span>
             </div>
 
-            <div className={styles.productSize}>
-              <Image src="/img/size.png" alt="" fill />
+            <div
+              onClick={() => {
+                setPrice(1);
+              }}
+              className={styles.productSize}
+            >
+              <Image src="/img/size.png" alt="" layout="fill" />
               <span className={styles.productNumber}>medium</span>
             </div>
 
-            <div className={styles.productSize}>
-              <Image src="/img/size.png" alt="" fill />
+            <div
+              onClick={() => {
+                setPrice(2);
+              }}
+              className={styles.productSize}
+            >
+              <Image src="/img/size.png" alt="" layout="fill" />
               <span className={styles.productNumber}>large</span>
             </div>
           </div>
           <div className={styles.productAdd}>
             <input
               type="number"
-              defaultValue={1}
+              onChange={(e) => {
+                setQuantity(e.target.value);
+              }}
               className={styles.productQuantity}
+              defaultValue={1}
+              min={1}
             />
             <button className={styles.productOrder}>Add to Cart</button>
           </div>
@@ -59,4 +81,14 @@ const Product = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ params }) {
+  const res = await axios.get(`http://localhost:3000/api/product/${params.id}`);
+  console.log(res.data);
+  return {
+    props: {
+      product: res.data.products,
+    },
+  };
+}
 export default Product;

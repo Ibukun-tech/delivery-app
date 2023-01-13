@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className={styles.footerContainer}>
       <div className={styles.footerItem}>
-        <Image src="/img/bg.png" fill />
+        <Image src="/img/bg.png" layout="fill" />
       </div>
       <div className={styles.footerItem}>
         <div className={styles.footerCard}>

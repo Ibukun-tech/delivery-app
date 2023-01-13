@@ -18,16 +18,9 @@ const productSchema = new mongoose.Schema(
       type: [Number],
       required: true,
     },
-    extraOptions: {
-      type: [
-        {
-          text: { type: String, required: true },
-          price: { type: Number, required: true },
-        },
-      ],
-    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("ProductModel", productSchema);
+export default mongoose.models.ProductModel ||
+  mongoose.model("ProductModel", productSchema);
