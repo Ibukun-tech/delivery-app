@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Head from "next/head";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/cart.module.css";
 const Cart = () => {
+  const dispatch = useDispatch();
+  const { products, quantity, total } = useSelector((state) => state.cart);
+  console.log(products);
   return (
     <>
       <Head>
@@ -27,28 +31,35 @@ const Cart = () => {
               <div>Quantity </div>
               <div>Total</div>
             </div>
-            <div className={styles.cartProduct}>
-              <div>
-                <div className={styles.cartImgContainer}>
-                  <Image src="/img/pizza.png" alt="" fill object-fit="cover" />
+            {products.map((prd, i) => (
+              <div className={styles.cartProduct} key={i}>
+                <div>
+                  <div className={styles.cartImgContainer}>
+                    <Image
+                      src={prd.img}
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+                <div className={styles.cartName}>
+                  <span>{prd.title}</span>
+                </div>
+                <div className={styles.cartExtra}>
+                  <span>{prd.description}</span>
+                </div>
+                <div className={styles.cartPrice}>
+                  <span>{prd.price}</span>
+                </div>
+                <div className={styles.cartQuantity}>
+                  <span>{prd.quantity}</span>
+                </div>
+                <div className={styles.total}>
+                  <span>${prd.price * prd.quantity}</span>
                 </div>
               </div>
-              <div className={styles.cartName}>
-                <span>PIZZA</span>
-              </div>
-              <div className={styles.cartExtra}>
-                <span>Tasty Ingridient sauce</span>
-              </div>
-              <div className={styles.cartPrice}>
-                <span>$39.00</span>
-              </div>
-              <div className={styles.cartQuantity}>
-                <span>5</span>
-              </div>
-              <div className={styles.total}>
-                <span>$145.00</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className={styles.cartRight}>
@@ -56,7 +67,7 @@ const Cart = () => {
             <h2 className={styles.cartRightTitle}>CART TOTAL</h2>
 
             <div className={styles.cartTotalText}>
-              <b className={styles.cartTotalTextTitle}>SubTotal:</b>$89.00
+              <b className={styles.cartTotalTextTitle}>SubTotal:</b>${total}
             </div>
 
             <div className={styles.cartTotalText}>
@@ -64,7 +75,7 @@ const Cart = () => {
             </div>
 
             <div className={styles.cartTotalText}>
-              <b className={styles.cartTotalTextTitle}>Total:</b>$89.00
+              <b className={styles.cartTotalTextTitle}>Total:</b>${total}
             </div>
             <button className={styles.cartButton}>CHECK OUT NOW</button>
           </div>

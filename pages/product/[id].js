@@ -1,9 +1,12 @@
 import styles from "../../styles/product.module.css";
+import { addProduct } from "../../redux/cartSlice";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 const Product = ({ product }) => {
+  const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   return (
@@ -74,7 +77,20 @@ const Product = ({ product }) => {
               defaultValue={1}
               min={1}
             />
-            <button className={styles.productOrder}>Add to Cart</button>
+            <button
+              className={styles.productOrder}
+              onClick={() => {
+                dispatch(
+                  addProduct({
+                    ...product,
+                    quantity,
+                    price: product.price[price],
+                  })
+                );
+              }}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

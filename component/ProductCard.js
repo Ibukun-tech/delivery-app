@@ -7,7 +7,12 @@ const ProductCard = ({ prd }) => {
   return (
     <div className={styles.productCardWrapper}>
       <Link href={`/product/${prd._id}`} passHref>
-        <Image src={`${prd.img}`} width={500} height={500} />
+        <Image
+          src={`${prd.img}`}
+          style={{ cursor: "pointer" }}
+          width={500}
+          height={500}
+        />
       </Link>
       <h1 className={styles.productCardTitle}>{prd.title}</h1>
       <span className={styles.productCardPrice}>{`$${prd.price[0]}`}</span>
