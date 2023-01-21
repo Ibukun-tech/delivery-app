@@ -1,0 +1,57 @@
+.orderContainer {
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(197, 197, 197, 0.5);
+}
+.orderWrapper {
+  width: 600px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.orderTitle {
+  font-weight: 300;
+}
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.orderLabel {
+  margin-bottom: 10px;
+}
+.orderInput {
+  height: 40px;
+
+  padding: 10px;
+}
+.orderButton {
+  border: none;
+  background-color: teal;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

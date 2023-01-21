@@ -1,9 +1,10 @@
 import styles from "../../styles/order.module.css";
 import Image from "next/image";
 import Head from "next/head";
+import axios from "axios";
 
-const Order = () => {
-  const status = 0;
+const Order = ({ order }) => {
+  const status = order.status;
   const statusHandler = (index) => {
     if (index - status < 1) return styles.done;
     if (index - status === 1) return styles.inProgress;
@@ -34,16 +35,16 @@ const Order = () => {
             </div>
             <div className={styles.cartProduct}>
               <div className={styles.orderId}>
-                <span>12345678</span>
+                <span>{order._id}</span>
               </div>
               <div className={styles.orderName}>
-                <span>Don David</span>
+                <span>{order.customer}</span>
               </div>
               <div className={styles.orderAddress}>
-                <span>Sagamu Ogun state</span>
+                <span>{order.address}</span>
               </div>
               <div className={styles.total}>
-                <span>$145.00</span>
+                <span>${order.Total}</span>
               </div>
             </div>
             <div className={styles.cartRow}>
@@ -83,7 +84,8 @@ const Order = () => {
             <h2 className={styles.cartRightTitle}>CART TOTAL</h2>
 
             <div className={styles.cartTotalText}>
-              <b className={styles.cartTotalTextTitle}>SubTotal:</b>$89.00
+              <b className={styles.cartTotalTextTitle}>SubTotal:</b>$
+              {order.Total}
             </div>
 
             <div className={styles.cartTotalText}>
@@ -91,7 +93,7 @@ const Order = () => {
             </div>
 
             <div className={styles.cartTotalText}>
-              <b className={styles.cartTotalTextTitle}>Total:</b>$89.00
+              <b className={styles.cartTotalTextTitle}>Total:</b>${order.Total}{" "}
             </div>
             <button className={styles.cartButton}>CHECK OUT NOW</button>
           </div>
@@ -100,4 +102,13 @@ const Order = () => {
     </>
   );
 };
+export async function getServerSideProps({ params }) {
+  const res = await axios.get(`http://localhost:3000/api/order/${params.id}`);
+  console.log(res.data);
+  return {
+    props: {
+      order: res.data,
+    },
+  };
+}
 export default Order;

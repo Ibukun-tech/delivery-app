@@ -19,8 +19,12 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    method: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
-
-const OrderModel = mongoose.model("OrderModel", orderSchema);
+export default mongoose.models.OrderModel ||
+  mongoose.model("OrderModel", productSchema);
