@@ -1,7 +1,10 @@
 import { useState } from "react";
 import styles from "../styles/orderdetail.module.css";
+import { useDispatch } from "react-redux";
+import { of } from "../redux/cartSlice";
 const OrderDetail = (props) => {
-  const { total, createOrder } = props;
+  const dispatch = useDispatch();
+  const { total, createOrder, cash } = props;
   const [surName, setSurName] = useState("");
   const [number, setNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -9,7 +12,12 @@ const OrderDetail = (props) => {
     await createOrder({ customer: surName, address, total, method: 0 });
   };
   return (
-    <div className={styles.orderContainer}>
+    <div
+      className={styles.orderContainer}
+      onClick={() => {
+        dispatch(of());
+      }}
+    >
       <div className={styles.orderWrapper}>
         <h1 className={styles.orderTitle}>You will pay $12 after delivery</h1>
         <div className={styles.orderItems}>

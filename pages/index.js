@@ -1,12 +1,14 @@
 import Head from "next/head";
 import axios from "axios";
 import Image from "next/image";
-
+import Add from "../component/Add";
+import AddButton from "../component/AddButton";
 import ProductList from "./../component/ProductList";
 import styles from "../styles/Home.module.css";
 import Feature from "./../component/Feature";
-
-export default function Home({ product }) {
+import { useState } from "react";
+export default function Home({ product, admin }) {
+  const [close, setClose] = useState(false);
   return (
     <>
       <Head>
@@ -22,17 +24,23 @@ export default function Home({ product }) {
         />
       </Head>
       <Feature />
+      {admin && <AddButton setClose={setClose} />}
       <ProductList product={product} />
+      {close && <Add setClose={setClose} />}
     </>
   );
 }
 
 export async function getServerSideProps(context) {
+  const ctx = context.req?.cookies || "";
+  let admin = true;
   const res = await axios.get("http://localhost:3000/api/product");
 
+  if (ctx.token === process.env.TOKEN) admin = true;
   return {
     props: {
       product: res.data,
+      admin,
     },
   };
 }

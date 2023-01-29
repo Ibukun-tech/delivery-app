@@ -1,7 +1,7 @@
 import OrderDetail from "../component/OrderDetail";
 import Image from "next/image";
 import Head from "next/head";
-import { reset } from "../redux/cartSlice";
+import { reset, on } from "../redux/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/cart.module.css";
 import { useEffect, useState } from "react";
@@ -14,7 +14,8 @@ import {
 } from "@paypal/react-paypal-js";
 const Cart = () => {
   const [open, setOpen] = useState(false);
-  const [cash, setCash] = useState(false);
+
+  // const [cash, setCash] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
   const createOrder = async (data) => {
@@ -23,8 +24,8 @@ const Cart = () => {
     res.status === 201 && router.push(`/orders/${res.data._id}`);
     dispatch(reset());
   };
-  const { products, total } = useSelector((state) => state.cart);
-
+  const { products, total, cash } = useSelector((state) => state.cart);
+  console.log(cash);
   const amount = total;
   const currency = "USD";
   const style = { layout: "vertical" };
@@ -161,7 +162,7 @@ const Cart = () => {
                 <button
                   className={styles.cartPaybutton}
                   onClick={() => {
-                    setCash(true);
+                    dispatch(on());
                   }}
                 >
                   CASH ON DELIVERY

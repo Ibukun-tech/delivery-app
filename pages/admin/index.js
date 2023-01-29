@@ -1,7 +1,13 @@
 import styles from "../../styles/admin.module.css";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { off } from "../../redux/cartSlice";
 import { useState } from "react";
 const Admin = ({ product, order }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  // const { cash } = useSelector((state) => state.cart);
   const [products, setProducts] = useState(product);
   const [orders, setOrders] = useState(order);
   const status = ["preparing", "on the way ", "delivered"];
@@ -17,11 +23,13 @@ const Admin = ({ product, order }) => {
     const item = orders.filter((ord) => ord._id === id)[0];
     const currentStatus = item.status;
     try {
-      await axios.put(`http://localhost:3000/api/order/${id}`, {
+      const res = await axios.put(`http://localhost:3000/api/order/${id}`, {
         status: currentStatus + 1,
       });
       setOrders([res.data, ...orders.filter((ord) => ord._id !== id)]);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -129,7 +137,12 @@ const Admin = ({ product, order }) => {
     </>
   );
 };
-export const getServerSideProps = async function () {
+export const getServerSideProps = async function (ctx) {
+  const cookie = ctx.req?.cookies || "";
+  // let admin=false
+  if (cookie !== process.env.Token) {
+    return { redirect: { destination: "/admin/login", permanent: false } };
+  }
   const productRes = await axios.get("http://localhost:3000/api/product");
   const orderRes = await axios.get("http://localhost:3000/api/order");
   return {

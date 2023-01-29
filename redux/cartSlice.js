@@ -6,8 +6,15 @@ const cartSlice = createSlice({
     products: [],
     quantity: 0,
     total: 0,
+    cash: false,
   },
   reducers: {
+    on: (state) => {
+      state.cash = true;
+    },
+    of: (state) => {
+      state.cash = false;
+    },
     addProduct: (state, action) => {
       state.products.push(action.payload);
       state.quantity += 1;
@@ -21,6 +28,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { reset, addProduct } = cartSlice.actions;
+export const { on, of, reset, addProduct } = cartSlice.actions;
 export const quantity = (state) => state.cart.quantity;
+export const cash = (state) => state.cart.cash;
 export default cartSlice.reducer;

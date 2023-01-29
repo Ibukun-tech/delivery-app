@@ -4,9 +4,15 @@ import OrderModel from "../../../model/orderModel";
 export default async function handler(req, res) {
   await dbConnect();
   const { method } = req;
+  if (method === "POST") {
+    try {
+      const order = await orderModel.create(req.body);
+      res.status(201).json(order);
+    } catch (err) {}
+  }
   if (method === "GET") {
     try {
-      const orders = await orderModel.find(req.body);
+      const orders = await orderModel.find();
       res.status(201).json(orders);
     } catch {
       res.status(500).json(err);
