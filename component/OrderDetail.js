@@ -1,11 +1,12 @@
 import { useState } from "react";
 import styles from "../styles/orderdetail.module.css";
-const OrderDetail = ({ total, createOrder }) => {
+const OrderDetail = (props) => {
+  const { total, createOrder } = props;
   const [surName, setSurName] = useState("");
   const [number, setNumber] = useState("");
   const [address, setAddress] = useState("");
-  const handleClick = () => {
-    createOrder({ customer: surName, address, total, method: 0 });
+  const handleClick = async () => {
+    await createOrder({ customer: surName, address, total, method: 0 });
   };
   return (
     <div className={styles.orderContainer}>

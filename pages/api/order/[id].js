@@ -15,6 +15,14 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   }
-  if (method === "POST") {
+  if (method === "PUT") {
+    try {
+      const order = await orderModel.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+      res.status(201).json(order);
+    } catch {
+      res.status(500).json(err);
+    }
   }
 }

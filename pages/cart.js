@@ -19,11 +19,12 @@ const Cart = () => {
   const router = useRouter();
   const createOrder = async (data) => {
     const res = await axios.post("http://localhost/3000/api/order", data);
+    console.log(res);
     res.status === 201 && router.push(`/orders/${res.data._id}`);
     dispatch(reset());
   };
   const { products, total } = useSelector((state) => state.cart);
-  console.log(products);
+
   const amount = total;
   const currency = "USD";
   const style = { layout: "vertical" };

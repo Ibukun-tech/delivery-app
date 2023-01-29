@@ -1,0 +1,40 @@
+.adminContainer {
+  padding: 50px;
+  display: flex;
+}
+.adminItem {
+  flex: 1;
+}
+.adminTable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.adminRow {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* justify-content: space-between; */
+  column-gap: 5px;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+.adminProduct {
+  display: grid;
+  column-gap: 5px;
+  grid-template-columns: repeat(6, 1fr);
+  /* justify-content: space-between; */
+}
+.adminButton {
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+.adminButton:first-child {
+  background-color: teal;
+  margin-right: 10px;
+}
+.adminButton:last-child {
+  background-color: crimson;
+}
