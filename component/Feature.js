@@ -4,7 +4,7 @@ import styles from "../styles/Feature.module.css";
 
 const Feature = () => {
   let [slide, setSlider] = useState(0);
-  const img = ["/img/feature1.png", "", ""];
+  const img = ["/img/pizza1.jpg", "/img/pizza2.jpg", "/img/pizza1.jpg"];
   const increaseSlider = () => {
     slide++;
     if (slide === img.length) {
